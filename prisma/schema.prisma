@@ -11,6 +11,6 @@ datasource db {
 }
 
 model Artist {
-  id   String @id
+  id   String @id @default(uuid())
   name String
 }
