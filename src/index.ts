@@ -8,7 +8,7 @@ const client = new PrismaClient();
 
 app.use(express.json());
 
-app.get("/", async (req, res) => {
+app.get("/artists", async (req, res) => {
   const artists = await client.artist.findMany();
 
   return res.json(artists);
