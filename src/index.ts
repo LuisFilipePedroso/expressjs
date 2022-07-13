@@ -8,6 +8,8 @@ const client = new PrismaClient();
 
 app.use(express.json());
 
+app.get("/", (req, res) => res.send("Hello Dev!"));
+
 app.get("/artists", async (req, res) => {
   const artists = await client.artist.findMany();
 
