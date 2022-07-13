@@ -1,15 +1,16 @@
-import bodyParser from "body-parser";
+import { PrismaClient } from "@prisma/client";
 import express from "express";
 
 const app = express();
 const port = process.env.PORT || 3333;
 
-app.use(bodyParser.json());
-app.use(bodyParser.raw({ type: "application/vnd.custom-type" }));
-app.use(bodyParser.text({ type: "text/html" }));
+app.use(express.json());
 
 app.get("/", async (req, res) => {
-  res.json({ Hello: "World" });
+  const client = new PrismaClient();
+  const artists = await client.artist.findMany();
+
+  return res.json(artists);
 });
 
 app.listen(port, () => {
